@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (isset($_SESSION['c_no']) && isset($_SESSION['MobileNo'])) {
+    $ConsumerNO = $_SESSION['c_no'];
+    $MobileNo = $_SESSION['MobileNo'];
+
+    // echo " (Consumer No: " . $ConsumerNO. ")";
+} else {
+    header("Location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>UserRegistration</title>
+    <title>HOME PAGE</title>
 </head>
 <body>
 
@@ -18,8 +31,15 @@
             <li>PayBill</li>
             <li>ContactUs</li>
         </ul>
-        <div class="text-2xl "><i class="fa-solid fa-user"></i></div>
+        <div class="flex items-center">
+            <div class="text-sm text-center mr-5"> 
+                <p class="font-semibold">Consumer No</p>
+                <p><?php  echo $ConsumerNO; ?></p>
+            </div>
+             <a href="logout.php"><i class="fa-solid fa-right-from-bracket text-2xl "></i></a> 
+        </div>
     </nav>
     </header>
+    <h1>hello</h1>
 </body>
 </html>

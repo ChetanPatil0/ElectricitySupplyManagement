@@ -51,7 +51,7 @@ let RegistrationValidation=()=>
 
 let DisplayErrorBlock = () =>{
     errorBlock.classList="bg-red-600 w-[40%] m-auto text-gray-200 text-lg text-center mt-5 p-3 rounded  absolute right-20";
-    setTimeout(RemoveErrorBlock,5000);
+    setTimeout(RemoveErrorBlock,3000);
 }
 let DisplaySuccesBlock = () =>{
     errorBlock.classList="bg-green-600 w-[40%] m-auto text-gray-200 text-lg text-center mt-5 p-3 rounded  absolute right-20";

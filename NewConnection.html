@@ -1,0 +1,270 @@
+<!-- <?php
+include 'connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $c_no = $_POST['c_no']; //consumer no
+    $mobile_no = $_POST['mobile_no'];
+    $usertype = 'LT';
+    $password = $_POST['password'];
+
+    $checkCno = "SELECT `ConsumerNO` FROM `userregistration` WHERE ConsumerNO= $c_no;";
+
+    if (mysqli_num_rows(mysqli_query($conn, $checkCno)) > 0) {
+        echo "<script>
+          alert('Consumer NO already register');
+        </script>";
+        // echo "Consumer NO already register";
+    } else {
+        $sql = "INSERT INTO userregistration VALUES ('', '$c_no', '$mobile_no', '$usertype', '', '$password')";
+        if (mysqli_query($conn, $sql)) {
+            echo "<script>
+                           alert('Data Successfully Inserted');
+                 </script>";      // echo "Consumer No Not already register";
+        } else {
+            echo "Data Not Inserted: " . mysqli_error($conn);
+        }
+    }
+    mysqli_close($conn);
+}
+?> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>NewConnection</title>
+</head>
+
+<body class="bg-gray-800">
+
+    <header class="w-[100%] bg-gradient-to-r from-pink-500 to-orange-500 py-3">
+        <nav class="w-[80%] m-auto flex justify-around items-center">
+            <h1 class="text-3xl font-semibold">ESM</h1>
+            <ul class="w-[40%] flex justify-around text-lg font-semibold">
+                <li>Home</li>
+                <li>New Connection</li>
+                <li>PayBill</li>
+                <li>ContactUs</li>
+            </ul>
+            <div class="text-2xl "><i class="fa-solid fa-user"></i></div>
+        </nav>
+    </header>
+    <div class="" id="errorblock">
+        <h1 id="errorMsg"></h1>
+    </div>
+    <main class="w-[100%]">
+        <section class="max-w-[90vh] m-auto  rounded mt-10 border-2 border-red-700 ">
+            <h1 class="text-3xl mt-2 font-bold text-red-500 text-center">NEW CONNECTION</h1>
+            <form onsubmit="" action="" method="post" class=" px-[2vh]  py-5 text-gray-200 grid">
+
+                <div>
+                    <h1 class="text-center bg-gray-600 py-1 text-lg">Applicant Details</h1>
+                </div>
+                <div class="flex flex-wrap gap-3 justify-around ">
+                    <div class="w-[45%]">
+                        <label class="font-semibold text-md">Full Name<span class="text-red-500">*</span></label><br>
+                        <input type="text" id="aname" name="aname"
+                            class="grid text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]"
+                            required>
+                    </div>
+                    <div class="w-[45%] flex justify-between">
+                        <div class="w-[45%]">
+                            <label class="font-semibold text-md">Gender<span class="text-red-500">*</span></label><br>
+                            <select id="gender" name="gender"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Male">Male</option>
+                                <option value="Gujrat">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%]">
+                            <label class="font-semibold text-md">Occupation<span
+                                    class="text-red-500">*</span></label><br>
+                            <select id="occupation" name="occupation"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Service">Service</option>
+                                <option value="Bussiness">Bussiness</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-[45%] ">
+                        <label class="font-semibold text-md">Mobile No<span class="text-red-500">*</span></label><br>
+                        <input type="text" id="mobileno" name="mobileno"
+                            class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]"
+                            required>
+                    </div>
+                    <div class="w-[45%]">
+                        <label class="font-semibold text-md">Email<span class="text-red-500">*</span></label><br>
+                        <input type="email" id="email" name="email"
+                            class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                    </div>
+
+                    <div class="flex justify-between w-[95%]">
+                        <div class="w-[20%]">
+                            <label class="font-semibold text-md">State<span class="text-red-500">*</span></label><br>
+                            <select id="state" name="state"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Gujrat">Gujrat</option>
+                                <option value="Delhi">Delhi</option>
+                            </select>
+                        </div>
+                        <div class="w-[20%]">
+                            <label class="font-semibold text-md">District<span class="text-red-500">*</span></label><br>
+                            <select id="district" name="district"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Maharashtra">Nashik</option>
+                                <option value="Gujrat">Mumbai</option>
+                                <option value="Delhi">Pune</option>
+                            </select>
+                        </div>
+                        <div class="w-[20%]">
+                            <label class="font-semibold text-md">Taluka<span class="text-red-500">*</span></label><br>
+                            <select id="taluka" name="taluka"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Maharashtra">Nashik</option>
+                                <option value="Gujrat">Mumbai</option>
+                                <option value="Delhi">Pune</option>
+                            </select>
+                        </div>
+                        <div class="w-[20%]">
+                            <label class="font-semibold text-md">Village<span class="text-red-500">*</span></label><br>
+                            <select id="city" name="city"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Maharashtra">Nashik</option>
+                                <option value="Gujrat">Mumbai</option>
+                                <option value="Delhi">Pune</option>
+                            </select>
+                        </div>
+                    </div>
+
+          
+                    <div class="w-[45%]">
+                        <label class="font-semibold text-md">Address<span class="text-red-500">*</span></label><br>
+                        <textarea name="address" id="address" rows="1"
+                            class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                            </textarea>
+                    </div>
+                    <div class="w-[45%] flex justify-between">
+                    <div class="w-[35%]">
+                        <label class="font-semibold text-md">Pin Code<span class="text-red-500">*</span></label><br>
+                        <input type="text" id="pincode" name="pincode"
+                            class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]"
+                            required>
+                    </div>
+                    
+                    <div class="w-[60%]">
+                        <label class="font-semibold text-md">Aadhar No<span class="text-red-500">*</span></label>
+                        <input type="text" id="aadharno" name="aadharno"
+                            class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]"
+                            required>
+                    </div>
+                </div>
+                </div>
+                <div>
+                    <div>
+                        <h1 class="text-center bg-gray-600 py-1 text-lg">Connection Details</h1>
+                    </div>
+                    <div class="flex justify-around gap-3 flex-wrap">
+                        <div class="w-[30%]">
+                            <label class="font-semibold text-md">Connection Type<span
+                                    class="text-red-500">*</span></label><br>
+                            <select id="state" name="state"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Commarcial">Commarcial</option>
+                                <option value="Non-Commarcial">Non-Commarcial</option>
+                                <option value="Industrail">Industrail</option>
+                            </select>
+                        </div>
+                        <div class="w-[30%]">
+                            <label class="font-semibold text-md">State<span class="text-red-500">*</span></label><br>
+                            <select id="state" name="state"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Gujrat">Gujrat</option>
+                                <option value="Delhi">Delhi</option>
+                            </select>
+                        </div>
+                        <div class="w-[30%]">
+                            <label class="font-semibold text-md">City<span class="text-red-500">*</span></label><br>
+                            <select id="state" name="state"
+                                class="text-md py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 w-[100%]">
+                                <option value="Maharashtra">Nashik</option>
+                                <option value="Gujrat">Mumbai</option>
+                                <option value="Delhi">Pune</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="flex justify-around">
+                        <button type="reset"
+                            class="mt-5 px-5 bg-red-500 text-lg font-semibold text-gray-200 text-md border-2 border-red-500 rounded hover:bg-gray-800 hover:text-red-500">Clear</button>
+                        <button type="submit"
+                            class="mt-5 px-3 bg-green-600 text-lg font-semibold text-gray-200 text-md border-2 border-green-600 rounded hover:bg-gray-800 hover:text-green-600">Submit</button>
+                    </div>
+            </form>
+            <p class="text-center text-gray-300 pb-2 font-serif">Already Register ? <a href="login.html"
+                    class="text-sky-500">Click For Login</a></p>
+        </section>
+    </main>
+
+    <script src="validation.js"></script>
+</body>
+
+</html>
+
+<!-- 
+<div>
+                        <label class="font-semibold text-md">Full Name<span class="text-red-500">*</span></label><br>
+                        <input type="text" id="aname" name="aname"
+                            class="text-lg py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 " required>
+                </div>
+                <div>
+                        
+                </div>
+                <div>
+                        <label class="font-semibold text-md">Email<span class="text-red-500">*</span></label><br>
+                        <input type="email" id="email" name="email"
+                            class="text-lg py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 ">
+                </div>
+                <div>
+                        <label class="font-semibold text-md">Gender<span class="text-red-500">*</span></label><br>
+                        <label class="text-lg font-semibold">Male</label>
+                        <input type="radio" id="gender" name="gender"
+                            class="mr-2"  required>
+                            <label class="text-lg font-semibold">Female</label>
+                        <input type="radio" id="gender" name="gender"
+                            class="mr-2" required>
+                            <label class="text-lg font-semibold">Other</label>
+                        <input type="radio" id="gender" name="gender"
+                            class="mr-2" required>
+
+                </div>
+                <div>
+                        <label class="font-semibold text-md">State<span class="text-red-500">*</span></label><br>
+                        <select id="state" name="state"
+                            class="text-lg py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 ">
+                               <option value="Maharashtra">Maharashtra</option>
+                               <option value="Gujrat">Gujrat</option>
+                               <option value="Delhi">Delhi</option>
+                        </select>
+                </div>
+                <div>
+                        <label class="font-semibold text-md">City<span class="text-red-500">*</span></label><br>
+                        <select id="city" name="city"
+                            class="text-lg py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 ">
+                               <option value="Maharashtra">Nashik</option>
+                               <option value="Gujrat">Mumbai</option>
+                               <option value="Delhi">Pune</option>
+                        </select>
+                </div>
+                <div>
+                        <label class="font-semibold text-md">Address<span class="text-red-500">*</span></label><br>
+                        <input type="text" id="address" name="address"
+                            class="text-lg py-1 bg-gray-800 focus:outline-none rounded border-2 border-gray-500 hover:border-gray-100 px-2 ">
+                </div>
+            </div> -->
